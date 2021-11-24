@@ -42,3 +42,12 @@ def delete_demand(request, id_demand):
     demand = Demand.objects.get(id=id_demand)
     demand.delete()
     return redirect('demands:list_demands')
+
+def search_demands(request):
+    template_name = 'demands/list_demands.html'
+    query = request.GET.get('query')
+    demands = Demand.objects.filter(title__icontains=query) | Demand.objects.filter(description__icontains=query)
+    context = {
+        'demands': demands,
+    }
+    return render(request,template_name, context)
