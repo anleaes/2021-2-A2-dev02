@@ -25,10 +25,8 @@
                     <a class="nav-link dropdown-toggle" href="#" id="dropdown05" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Menu</a>
                     <div class="dropdown-menu" aria-labelledby="dropdown05">
                         <a class="dropdown-item" href="#">Clientes</a>
-                        <a class="dropdown-item" href="#">Pedidos</a>
+                        <a class="dropdown-item" href="{% url 'demands:list_demands' %}">Demandas</a>
                         <a class="dropdown-item" href="{% url 'teams:list_teams' %}">Times</a>
-                        <a class="dropdown-item" href="#">Categorias</a>
-                        <a class="dropdown-item" href="#">Redes Sociais</a>
                     </div>
                 </li>
             </ul>
