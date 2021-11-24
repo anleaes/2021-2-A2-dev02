@@ -45,6 +45,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'widget_tweaks',
     'core.apps.CoreConfig', 
+    'profiles.apps.ProfilesConfig',
+    'accounts.apps.AccountsConfig',
 ]
 
 MIDDLEWARE = [
