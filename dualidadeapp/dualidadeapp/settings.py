@@ -47,6 +47,7 @@ INSTALLED_APPS = [
     'core.apps.CoreConfig', 
     'profiles.apps.ProfilesConfig',
     'accounts.apps.AccountsConfig',
+    'teams.apps.TeamsConfig',
 ]
 
 MIDDLEWARE = [
