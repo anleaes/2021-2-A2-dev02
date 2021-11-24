@@ -14,7 +14,7 @@
 
     <!-- INICIO: Bloco do Bootstrap a ser incluido -->
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-        <a class="navbar-brand" href="/">Nome do meu App</a>
+        <a class="navbar-brand" href="/">Dualidade App</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExample05" aria-controls="navbarsExample05" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
@@ -24,14 +24,13 @@
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="dropdown05" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Menu</a>
                     <div class="dropdown-menu" aria-labelledby="dropdown05">
-                        <a class="dropdown-item" href="#">Clientes</a>
                         <a class="dropdown-item" href="{% url 'demands:list_demands' %}">Demandas</a>
                         <a class="dropdown-item" href="{% url 'teams:list_teams' %}">Times</a>
                     </div>
                 </li>
             </ul>
-            <form action="#" method="GET" class="form-inline my-2 my-md-0" style="margin-right: 10px">
-                <input class="form-control" name="query" type="text" aria-label="Buscar" style="margin-right: 10px">
+            <form action="{% url 'demands:search_demands' %}" method="GET" class="form-inline my-2 my-md-0" style="margin-right: 10px">
+                <input class="form-control" name="query" type="text" placeholder="Titulo/desc da demanda" aria-label="Buscar" style="margin-right: 10px">
                 <button class="btn btn-outline-secondary my-2 my-sm-0" type="submit">Buscar</button>
             </form>
             <ul class="navbar-nav">
