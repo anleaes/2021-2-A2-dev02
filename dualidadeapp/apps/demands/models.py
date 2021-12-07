@@ -21,10 +21,10 @@ class Demand(models.Model):
     owner = models.ForeignKey(User, on_delete=models.CASCADE)
     team = models.ForeignKey(Team, on_delete=models.CASCADE)
     
-class Meta:
-    verbose_name = 'Demanda'
-    verbose_name_plural = 'Demandas'
-    ordering =['id']
+    class Meta:
+        verbose_name = 'Demanda'
+        verbose_name_plural = 'Demandas'
+        ordering =['id']
 
-def __str__(self):
-    return self.name
+    def __str__(self):
+        return self.name

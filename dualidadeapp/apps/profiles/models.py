@@ -12,12 +12,12 @@ class Profile(models.Model):
     area = models.CharField('Area', max_length=50)
     biography = models.TextField('Biografia', max_length=300)
     git = models.CharField('Git', max_length=100)
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    user = models.OneToOneField(User, on_delete=models.CASCADE, related_name='profile')
 
-class Meta:
-    verbose_name = 'Perfil'
-    verbose_name_plural = 'Perfis'
-    ordering =['id']
+    class Meta:
+        verbose_name = 'Perfil'
+        verbose_name_plural = 'Perfis'
+        ordering =['id']
 
-def __str__(self):
-    return self.name
+    def __str__(self):
+        return self.name
