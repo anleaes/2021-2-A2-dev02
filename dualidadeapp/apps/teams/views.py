@@ -1,6 +1,6 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from .forms import TeamForm
-from .models import Team
+from .models import Team, UserTeam, User
 
 # Create your views here.
 def add_team(request):
@@ -19,9 +19,13 @@ def add_team(request):
 
 def list_teams(request):
     template_name = 'teams/list_teams.html'
+    userTeams = UserTeam.objects.filter()
+    users = User.objects.filter()
     teams = Team.objects.filter()
     context = {
-        'teams': teams
+        'teams': teams,
+        'users': users,
+        'userTeams': userTeams
     }
     return render(request, template_name, context)
 
