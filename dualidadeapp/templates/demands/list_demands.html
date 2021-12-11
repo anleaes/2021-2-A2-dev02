@@ -27,7 +27,6 @@
                     <th scope="col">Prazo Final</th>
                     <th scope="col">Tipo</th>
                     <th scope="col">Status</th>
-                    <th scope="col">Documento</th>
                     <th scope="col">Repositorio</th>
                     <th scope="col">Dono</th>
                     <th scope="col">Time</th>
@@ -38,24 +37,26 @@
                 <tbody>
                     {% for demand in demands %}
                         <tr>
-                            <th scope="row">{{ demand.id }}</th>
+                            <th scope="row">{{ demand.id }}</th>       
                             <td>{{ demand.title }}</td>
                             <td>{{ demand.description }}</td>
                             <td>{{ demand.deadline }}</td>
                             <td>{{ demand.type }}</td>
                             <td>{{ demand.status }}</td>
-                            <td>
-                                <a href="{{ demand.file.url }}" >{{ demand.file.url }}</a>
-                            </td>
                             <td>{{ demand.repository }}</td>
                             <td>{{ demand.owner }}</td>
                             <td>{{ demand.team }}</td>
                             <td>
-                                <a href="{% url 'demands:edit_demand' demand.id %}" class="btn btn-primary btn-sm">Editar</a>
+                                <a href="{% url 'demands:demand_detail' demand.id %}" class="btn btn-primary btn-sm">Detalhes</a>
                             </td>
-                            <td>    
-                                <a href="{% url 'demands:delete_demand' demand.id %}" class="btn btn-danger btn-sm ">Excluir</a>
-                            </td>
+                            {% if user.id == demand.owner.id %}
+                                <td>
+                                    <a href="{% url 'demands:edit_demand' demand.id %}" class="btn btn-primary btn-sm">Editar</a>
+                                </td>
+                                <td>    
+                                    <a href="{% url 'demands:delete_demand' demand.id %}" class="btn btn-danger btn-sm ">Excluir</a>
+                                </td>   
+                            {% endif %}
                         </tr> 
                     {% endfor %}
                 </tbody>

@@ -14,4 +14,5 @@ def edit_profile(request, id_user):
 
     form = ProfileForm(instance=profile)
     context['form'] = form
+    context['profile'] = profile
     return render(request, template_name, context)
