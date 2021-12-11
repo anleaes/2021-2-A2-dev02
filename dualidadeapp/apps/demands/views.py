@@ -1,6 +1,6 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from .forms import DemandForm, DemandTeamLikeForm
-from .models import Demand, DemandTeamLike
+from .models import Demand, DemandTeamLike, Team
 
 # Create your views here.
 def add_demand(request):
@@ -33,6 +33,18 @@ def demand_detail(request, id_demand):
         'demand': demand,
         'demandTeamLikes': demandTeamLikes
     }
+    if request.method == "POST":
+        print("POSTTTTTTTT")
+        team_id = request.POST['accept']
+        print("TEAM ID: " + team_id)
+        if team_id:
+            team = Team.objects.get(id=int(team_id))
+            if team:
+                demand.team = team
+                demand.status = 'Em andamento'
+                demand.save()
+                return redirect('demands:list_demands')
+
     return render(request, template_name, context)
     
 def edit_demand(request, id_demand):

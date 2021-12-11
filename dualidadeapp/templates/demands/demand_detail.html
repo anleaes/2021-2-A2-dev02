@@ -29,19 +29,49 @@
                 </div>
             </div>
             <br />
-            <h3>Interessados</h2>
-            <td>
-                <a href="{% url 'demands:demand_add_like' demand.id %}" class="btn btn-primary btn-sm">Demonstrar interesse</a>
-            </td>
-            <br />
-            <br />
-            <td>
-                {% for demandTeamLike in demandTeamLikes %}
-                    {% if demandTeamLike.demand.id == demand.id %}
-                        <li>{{ demandTeamLike.team.name }}</li>
+            {% if demand.status == "Disponível" %}
+                <h3>Interessados</h2>
+                    {% if user.id != demand.owner.id %}
+                        <td>
+                            <a href="{% url 'demands:demand_add_like' demand.id %}" class="btn btn-primary btn-sm">Demonstrar interesse</a>
+                        </td>
+                        <br />
+                        <br />   
                     {% endif %}
-                {% endfor %}    
-            </td>
+                <table class="table table-hover">
+                    <thead>
+                        <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Time</th>
+                        <th scope="col"></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for demandTeamLike in demandTeamLikes %}
+                            {% if demandTeamLike.demand.id == demand.id %}
+                            <tr>
+                                <th scope="row">{{ demandTeamLike.id }}</th>  
+                                <td>{{ demandTeamLike.team.name }}</td>
+                                {% if user.id == demand.owner.id %}
+                                    <td>
+                                        <form action="" method="POST">
+                                            {% csrf_token %}
+                                            <button 
+                                                type="submit" 
+                                                class="btn btn-primary btn-sm"
+                                                value="{{ demandTeamLike.team.id }}" 
+                                                name="accept">Aceitar
+                                            </button>
+                                        </form>
+                                        
+                                    </td> 
+                                {% endif %}
+                            </tr> 
+                            {% endif %}
+                        {% endfor %}  
+                    </tbody>
+                </table>
+            {% endif %}
         </div>
     </div>
 {% endblock body %}
