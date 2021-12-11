@@ -34,9 +34,7 @@ def demand_detail(request, id_demand):
         'demandTeamLikes': demandTeamLikes
     }
     if request.method == "POST":
-        print("POSTTTTTTTT")
         team_id = request.POST['accept']
-        print("TEAM ID: " + team_id)
         if team_id:
             team = Team.objects.get(id=int(team_id))
             if team:
@@ -72,8 +70,8 @@ def demand_add_like(request, id_demand):
             f.save()
             form.save_m2m()
             return redirect('demands:list_demands')
-        form = DemandForm()
-        context['form'] = form
+    form = DemandTeamLikeForm()
+    context['form'] = form
 
     return render(request, template_name, context)
 

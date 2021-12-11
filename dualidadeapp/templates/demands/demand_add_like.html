@@ -17,11 +17,11 @@
             <div class ="col-md-12">
                 <form action="" method="POST"> 
                     {% csrf_token %}
-                <p>Deseja demonstrar interesse com qual time?</p>
-                <div class="form-group">
-                    <label for="{{ form.team.id_for_label }}">Time</label>
-                    {{ form.team|add_class:"form-control" }}
-                </div>
+                    <p>Deseja demonstrar interesse com qual time?</p>
+                    <div class="form-group">
+                        <label for="{{ form.team.id_for_label }}">Time</label>
+                        {{ form.team|add_class:"form-control" }}
+                    </div>
                     <button type="submit" class="btn btn-primary">Salvar</button>       
                 </form>
             </div>

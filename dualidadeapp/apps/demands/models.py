@@ -16,7 +16,7 @@ class Demand(models.Model):
         ('Finalizado', 'Finalizado'),
         ('Cancelado', 'Cancelado'),
     )
-    status = models.CharField('Status', max_length=20, choices=STATUS_CHOICES, null=True, blank=True, default='Em andamento')
+    status = models.CharField('Status', max_length=20, choices=STATUS_CHOICES, null=True, blank=True, default='Disponível')
     file = models.FileField('Documento', upload_to='docs')
     repository = models.CharField('Repositorio', max_length=100)
     owner = models.ForeignKey(User, on_delete=models.CASCADE)
