@@ -20,7 +20,7 @@ class Demand(models.Model):
     file = models.FileField('Documento', upload_to='docs')
     repository = models.CharField('Repositorio', max_length=100)
     owner = models.ForeignKey(User, on_delete=models.CASCADE)
-    team = models.ForeignKey(Team, on_delete=models.CASCADE)
+    team = models.ForeignKey(Team, on_delete=models.CASCADE, default=None, blank=True, null=True)
     
     class Meta:
         verbose_name = 'Demanda'

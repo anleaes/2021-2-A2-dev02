@@ -1,6 +1,6 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from .forms import DemandForm, DemandTeamLikeForm
-from .models import Demand, DemandTeamLike, Team
+from .models import Demand, DemandTeamLike, Team, User
 
 # Create your views here.
 def add_demand(request):
@@ -10,6 +10,7 @@ def add_demand(request):
         form = DemandForm(request.POST, request.FILES)
         if form.is_valid():
             f = form.save(commit=False)
+            f.status = "Disponível"
             f.save()
             form.save_m2m()
             return redirect('demands:list_demands')

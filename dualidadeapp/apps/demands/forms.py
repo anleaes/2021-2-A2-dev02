@@ -5,7 +5,7 @@ class DemandForm(forms.ModelForm):
 
     class Meta:
         model = Demand
-        exclude = ('created_on' , 'updated_on')
+        exclude = ('created_on' , 'updated_on', 'team', 'status')
 
 
 class DemandTeamLikeForm(forms.ModelForm):
