@@ -27,7 +27,6 @@
                     <th scope="col">Prazo Final</th>
                     <th scope="col">Tipo</th>
                     <th scope="col">Status</th>
-                    <th scope="col">Documento</th>
                     <th scope="col">Repositorio</th>
                     <th scope="col">Dono</th>
                     <th scope="col">Time</th>
@@ -44,9 +43,6 @@
                             <td>{{ demand.deadline }}</td>
                             <td>{{ demand.type }}</td>
                             <td>{{ demand.status }}</td>
-                            <td>
-                                <a href="{{ demand.file.url }}" >{{ demand.file.url }}</a>
-                            </td>
                             <td>{{ demand.repository }}</td>
                             <td>{{ demand.owner }}</td>
                             <td>{{ demand.team }}</td>
