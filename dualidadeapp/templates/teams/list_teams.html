@@ -41,12 +41,14 @@
                                     {% endif %}
                                 {% endfor %}
                             </td>
-                            <td>
-                                <a href="{% url 'teams:edit_team' team.id %}" class="btn btn-primary btn-sm">Editar</a>
-                            </td>
-                            <td>    
-                                <a href="{% url 'teams:delete_team' team.id %}" class="btn btn-danger btn-sm ">Excluir</a>
-                            </td>
+                            {% if user.id == team.owner.id %}
+                                <td>
+                                    <a href="{% url 'teams:edit_team' team.id %}" class="btn btn-primary btn-sm">Editar</a>
+                                </td>
+                                <td>    
+                                    <a href="{% url 'teams:delete_team' team.id %}" class="btn btn-danger btn-sm ">Excluir</a>
+                                </td>
+                            {% endif %}
                         </tr> 
                     {% endfor %}
                 </tbody>

@@ -38,7 +38,7 @@
                 <tbody>
                     {% for demand in demands %}
                         <tr>
-                            <th scope="row">{{ demand.id }}</th>
+                            <th scope="row">{{ demand.id }}</th>       
                             <td>{{ demand.title }}</td>
                             <td>{{ demand.description }}</td>
                             <td>{{ demand.deadline }}</td>
@@ -51,11 +51,16 @@
                             <td>{{ demand.owner }}</td>
                             <td>{{ demand.team }}</td>
                             <td>
-                                <a href="{% url 'demands:edit_demand' demand.id %}" class="btn btn-primary btn-sm">Editar</a>
+                                <a href="{% url 'demands:demand_detail' demand.id %}" class="btn btn-primary btn-sm">Detalhes</a>
                             </td>
-                            <td>    
-                                <a href="{% url 'demands:delete_demand' demand.id %}" class="btn btn-danger btn-sm ">Excluir</a>
-                            </td>
+                            {% if user.id == demand.owner.id %}
+                                <td>
+                                    <a href="{% url 'demands:edit_demand' demand.id %}" class="btn btn-primary btn-sm">Editar</a>
+                                </td>
+                                <td>    
+                                    <a href="{% url 'demands:delete_demand' demand.id %}" class="btn btn-danger btn-sm ">Excluir</a>
+                                </td>   
+                            {% endif %}
                         </tr> 
                     {% endfor %}
                 </tbody>

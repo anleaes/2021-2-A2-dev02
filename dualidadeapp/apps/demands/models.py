@@ -11,6 +11,7 @@ class Demand(models.Model):
     deadline = models.DateField('Prazo Final', auto_now=False, auto_now_add=False) 
     type = models.CharField('Tipo', max_length=50)
     STATUS_CHOICES = (
+        ('Disponível', 'Disponível'),
         ('Em andamento', 'Em andamento'),
         ('Finalizado', 'Finalizado'),
         ('Cancelado', 'Cancelado'),
@@ -28,3 +29,18 @@ class Demand(models.Model):
 
     def __str__(self):
         return self.name
+
+
+class DemandTeamLike(models.Model):
+    created_on = models.DateTimeField(auto_now_add=True)
+    updated_on = models.DateTimeField(auto_now=True)
+    demand = models.ForeignKey(Demand, on_delete=models.CASCADE)
+    team = models.ForeignKey(Team, on_delete=models.CASCADE)
+
+    class Meta:
+        verbose_name = 'Like de time em demanda'
+        verbose_name_plural = 'Likes de time em demanda'
+        ordering =['id']
+
+    def __str__(self):
+        return self.team.name

@@ -1,6 +1,6 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from .forms import DemandForm
-from .models import Demand
+from .models import Demand, DemandTeamLike
 
 # Create your views here.
 def add_demand(request):
@@ -25,6 +25,16 @@ def list_demands(request):
     }
     return render(request, template_name, context)
 
+def demand_detail(request, id_demand):
+    template_name = 'demands/demand_detail.html'
+    demand = get_object_or_404(Demand, id=id_demand)
+    demandTeamLikes = DemandTeamLike.objects.filter()
+    context = {
+        'demand': demand,
+        'demandTeamLikes': demandTeamLikes
+    }
+    return render(request, template_name, context)
+    
 def edit_demand(request, id_demand):
     template_name = 'demands/add_demand.html'
     context ={}
