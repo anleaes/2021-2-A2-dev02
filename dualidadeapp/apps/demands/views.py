@@ -1,5 +1,5 @@
 from django.shortcuts import render, get_object_or_404, redirect
-from .forms import DemandForm
+from .forms import DemandForm, DemandTeamLikeForm
 from .models import Demand, DemandTeamLike
 
 # Create your views here.
@@ -46,6 +46,23 @@ def edit_demand(request, id_demand):
             return redirect('demands:list_demands')
     form = DemandForm(instance=demand)
     context['form'] = form
+    return render(request, template_name, context)
+    
+def demand_add_like(request, id_demand):
+    template_name = 'demands/demand_add_like.html'
+    context ={}
+    if request.method =='POST':
+        form = DemandTeamLikeForm(request.POST)
+        if form.is_valid():
+            f = form.save(commit=False)
+            demand = Demand.objects.get(id=id_demand)
+            f.demand = demand
+            f.save()
+            form.save_m2m()
+            return redirect('demands:list_demands')
+        form = DemandForm()
+        context['form'] = form
+
     return render(request, template_name, context)
 
 def delete_demand(request, id_demand):

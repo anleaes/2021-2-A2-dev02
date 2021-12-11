@@ -21,7 +21,7 @@
                 <img src="{{ demand.file.url }}" class="align-self-start mr-3 rounded-circle" width="100" height="100">
                 <div class="media-body">
                     <h5 class="mt-0">{{ demand.title }}</h5>
-                    <p>Description: {{ demand.description }}</p>
+                    <p>Descrição: {{ demand.description }}</p>
                     <p>Prazo Final: {{ demand.deadline }}</p>
                     <p>Status: {{ demand.status }}</p>
                     <p>Dono: {{ demand.owner }}</p>
@@ -31,16 +31,16 @@
             <br />
             <h3>Interessados</h2>
             <td>
-                {% if demandTeamLikes.lenght > 0 %}
-                    {% for demandTeamLike in demandTeamLikes %}
-                        {% if demandTeamLike.demand.id == demand.id %}
-                            <li>{{ demandTeamLike.team.name }}</li>
-                        {% endif %}
-                    {% endfor %}
-                {% else %}
-                    <p>Nenhum time demonstrou interesse ainda.</p>
-                {% endif %}
-                
+                <a href="{% url 'demands:demand_add_like' demand.id %}" class="btn btn-primary btn-sm">Demonstrar interesse</a>
+            </td>
+            <br />
+            <br />
+            <td>
+                {% for demandTeamLike in demandTeamLikes %}
+                    {% if demandTeamLike.demand.id == demand.id %}
+                        <li>{{ demandTeamLike.team.name }}</li>
+                    {% endif %}
+                {% endfor %}    
             </td>
         </div>
     </div>
